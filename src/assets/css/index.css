@@ -1,0 +1,81 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+	scroll-behavior: smooth;
+	-webkit-tap-highlight-color: transparent;
+}
+
+a {
+	text-decoration: none;
+	cursor: url('/img/cursor-pointer.png'), pointer;
+}
+
+button {
+	cursor: url('/img/cursor-pointer.png'), pointer;
+}
+
+body {
+	cursor: url('/img/cursor.png'), auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+	cursor: text;
+}
+a h1,
+a h2,
+a h3,
+a h4,
+a h5,
+a h6,
+a p,
+a span {
+	cursor: url('/img/cursor-pointer.png'), pointer;
+}
+
+button h1,
+button h2,
+button h3,
+button h4,
+button h5,
+button h6,
+button p,
+button span {
+	cursor: url('/img/cursor-pointer.png'), pointer;
+}
+
+::selection {
+	background-color: #9733ee;
+	color: white;
+}
+
+::-webkit-scrollbar {
+	width: 0.6em;
+	background: none;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgb(0, 0, 0, 0.5);
+	border-radius: 5px;
+}
+
+@media screen and (max-width: 1400px) {
+	body {
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+}

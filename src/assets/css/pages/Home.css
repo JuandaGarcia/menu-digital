@@ -1,0 +1,95 @@
+.header {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-rows: 8em;
+	grid-template-areas: 'logo input shopping-cart';
+	align-items: center;
+	padding: 0 2em;
+	position: sticky;
+	top: 0;
+	background: rgb(255, 255, 255, 0.8);
+	backdrop-filter: blur(10px);
+	z-index: 10;
+}
+
+.main-container__title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.main-container__title__h1 {
+	font-family: 'Playfair Display', serif;
+}
+
+.header__button {
+	grid-area: shopping-cart;
+	background: none;
+	height: 100%;
+	outline: none;
+	border: none;
+	position: relative;
+	transition: 0.2s all ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-self: flex-end;
+}
+
+.header__button:hover {
+	transform: scale(1.1);
+}
+
+.header__button__img {
+	height: 60%;
+}
+
+.header__button__count {
+	position: absolute;
+	right: 1.9em;
+	top: 2.7em;
+	font-weight: bold;
+	color: #fff;
+}
+
+.header__logo {
+	height: 60%;
+	grid-area: logo;
+}
+
+.header__input {
+	grid-area: input;
+	background: rgb(233, 233, 233);
+	padding: 0 2em;
+	outline: none;
+	border: none;
+	height: 3em;
+	border-radius: 25px;
+	width: 50%;
+	align-self: center;
+	justify-self: center;
+}
+
+.menu {
+	margin-top: 2em;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	padding: 0 3em;
+}
+
+.menu__section {
+	padding: 2em;
+	display: flex;
+	flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+	.menu {
+		grid-template-columns: 1fr;
+		padding: 0 1em;
+	}
+	.header__input {
+		width: 90%;
+	}
+}
