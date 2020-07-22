@@ -48,7 +48,8 @@ button h4,
 button h5,
 button h6,
 button p,
-button span {
+button span,
+input[type='submit'] {
 	cursor: url('/img/cursor-pointer.png'), pointer;
 }
 

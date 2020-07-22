@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import Loader from '../components/Loader'
 import { auth } from '../firebase'
 
 const Login = () => {
 	const [form, setValues] = useState({})
+	const [loading, setLoading] = useState(false)
+	const [errors, setErrors] = useState({})
 
 	useEffect(() => {
 		document.title = 'Delimenú - Registro'
@@ -17,16 +20,39 @@ const Login = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		auth
-			.createUserWithEmailAndPassword(form.email, form.password)
-			.then((userCredentials) => {
-				console.log(userCredentials)
+		setErrors({})
+		setLoading(true)
+		document
+			.querySelectorAll('input')
+			.forEach((input) => (input.disabled = true))
+		if (form.password === form.confirmPassword) {
+			auth
+				.createUserWithEmailAndPassword(form.email, form.password)
+				.then((userCredentials) => {
+					return userCredentials.user.updateProfile({
+						displayName: form.name,
+					})
+				})
+				.catch((err) => {
+					if (err.code === 'auth/email-already-in-use') {
+						setErrors({
+							email: true,
+						})
+					} else {
+						setErrors({
+							unexpected: true,
+						})
+					}
+				})
+		} else {
+			setErrors({
+				password: true,
 			})
-			.catch((err) => {
-				if (err.code === 'auth/email-already-in-use') {
-					console.log('El usario ya esta registrado')
-				}
-			})
+		}
+		document
+			.querySelectorAll('input')
+			.forEach((input) => (input.disabled = false))
+		setLoading(false)
 	}
 
 	return (
@@ -45,6 +71,7 @@ const Login = () => {
 						className="login-register-form__input"
 						type="text"
 						required
+						maxLength="30"
 						onChange={handleInput}
 					/>
 				</label>
@@ -75,6 +102,7 @@ const Login = () => {
 						className="login-register-form__input"
 						type="password"
 						required
+						minLength="8"
 						onChange={handleInput}
 					/>
 				</label>
@@ -85,7 +113,7 @@ const Login = () => {
 						alt="User"
 					/>
 					<input
-						name="ConfirmPassword"
+						name="confirmPassword"
 						placeholder="Confirmar contraseña"
 						className="login-register-form__input"
 						type="password"
@@ -93,13 +121,35 @@ const Login = () => {
 						onChange={handleInput}
 					/>
 				</label>
-				<button
+				<input
 					className="login-register-form__button regirter-grid--division"
 					type="submit"
-				>
-					Registrarse
-				</button>
+					value="Registrarse"
+				/>
 			</form>
+			{loading && <Loader />}
+			<div className="login-register__errors">
+				<span>
+					<ul>
+						{errors.password && (
+							<li className="login-register__errors--li">
+								Las contraseñas no coinciden
+							</li>
+						)}
+						{errors.email && (
+							<li className="login-register__errors--li">
+								Este correo ya se encuentra registrado
+							</li>
+						)}
+						{errors.unexpected && (
+							<li className="login-register__errors--li">
+								Ocurrió un error al enviar la información. Por favor intenta de
+								nuevo
+							</li>
+						)}
+					</ul>
+				</span>
+			</div>
 		</div>
 	)
 }

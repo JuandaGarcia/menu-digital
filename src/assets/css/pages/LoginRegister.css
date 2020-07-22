@@ -103,6 +103,7 @@
 	font-size: 1.1em;
 	font-weight: 600;
 	transition: 0.2s all ease;
+	cursor: pointer;
 }
 
 .login-register-form__button:hover {
@@ -128,6 +129,16 @@
 	color: #727272;
 	font-size: 0.9em;
 	margin-right: 1em;
+}
+
+.login-register__errors {
+	color: rgb(255, 102, 102);
+	margin-top: 2em;
+}
+
+.login-register__errors--li {
+	list-style-position: inside;
+	margin-top: 1em;
 }
 
 @media screen and (max-width: 1024px) {

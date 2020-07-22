@@ -17,24 +17,27 @@ const LoginRegisterContainer = ({ match }) => {
 				</Link>
 				{match.path === '/login' ? <Login /> : <Register />}
 				<div className="login-register__links-question">
-					<span>
-						¿No tienes cuenta?
-						{match.path === '/login' ? (
+					{match.path === '/login' ? (
+						<span>
+							¿No tienes cuenta?
 							<Link
 								className="login-register__form__question__link"
 								to="/register"
 							>
 								<strong> Regístrate</strong>
 							</Link>
-						) : (
+						</span>
+					) : (
+						<span>
+							¿Ya tienes cuenta?
 							<Link
 								className="login-register__form__question__link"
 								to="/login"
 							>
 								<strong> Inicia sesión</strong>
 							</Link>
-						)}
-					</span>
+						</span>
+					)}
 					<div className="login-register__form__links">
 						<Link className="login-register__form__links--link" to="/">
 							Términos y condiciones

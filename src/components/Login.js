@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import Loader from '../components/Loader'
 import { auth } from '../firebase'
 
 const Login = () => {
 	const [form, setValues] = useState({})
+	const [loading, setLoading] = useState(false)
+	const [errors, setErrors] = useState({})
 
 	useEffect(() => {
 		document.title = 'Delimenú - Inicio de sesión'
@@ -17,11 +20,35 @@ const Login = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
+		setErrors({})
+		setLoading(true)
+		document
+			.querySelectorAll('input')
+			.forEach((input) => (input.disabled = true))
 		auth
 			.signInWithEmailAndPassword(form.email, form.password)
 			.then((userCredentials) => {
 				console.log(userCredentials)
 			})
+			.catch((err) => {
+				if (
+					err.code === 'auth/user-not-found' ||
+					err.code === 'auth/wrong-password'
+				) {
+					setErrors({
+						incorrect: true,
+					})
+				} else {
+					setErrors({
+						unexpected: true,
+					})
+				}
+				console.log(err)
+			})
+		document
+			.querySelectorAll('input')
+			.forEach((input) => (input.disabled = false))
+		setLoading(false)
 	}
 
 	return (
@@ -58,10 +85,30 @@ const Login = () => {
 						onChange={handleInput}
 					/>
 				</label>
-				<button className="login-register-form__button" type="submit">
-					Iniciar Sesión
-				</button>
+				<input
+					className="login-register-form__button"
+					type="submit"
+					value="Iniciar Sesión"
+				/>
 			</form>
+			{loading && <Loader />}
+			<div className="login-register__errors">
+				<span>
+					<ul>
+						{errors.incorrect && (
+							<li className="login-register__errors--li">
+								El correo o la contraseña es incorrecto
+							</li>
+						)}
+						{errors.unexpected && (
+							<li className="login-register__errors--li">
+								Ocurrió un error al enviar la información. Por favor intenta de
+								nuevo
+							</li>
+						)}
+					</ul>
+				</span>
+			</div>
 		</div>
 	)
 }

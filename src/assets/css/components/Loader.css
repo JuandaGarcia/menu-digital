@@ -1,0 +1,17 @@
+.container-loader {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2em;
+}
+
+.loader {
+	height: 40px;
+	width: 40px;
+}
+
+svg path,
+svg rect {
+	fill: #44ea7c;
+}
