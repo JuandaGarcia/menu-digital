@@ -1,12 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { auth } from '../firebase'
 
 const Login = () => {
+	const [form, setValues] = useState({})
+
 	useEffect(() => {
 		document.title = 'Delimenú - Inicio de sesión'
 	}, [])
 
+	const handleInput = (event) => {
+		setValues({
+			...form,
+			[event.target.name]: event.target.value,
+		})
+	}
+
 	const handleSubmit = (event) => {
 		event.preventDefault()
+		auth
+			.signInWithEmailAndPassword(form.email, form.password)
+			.then((userCredentials) => {
+				console.log(userCredentials)
+			})
 	}
 
 	return (
@@ -20,10 +35,12 @@ const Login = () => {
 						alt="User"
 					/>
 					<input
+						name="email"
 						placeholder="Correo"
 						className="login-register-form__input"
 						type="email"
 						required
+						onChange={handleInput}
 					/>
 				</label>
 				<label className="login-register-form__label">
@@ -33,10 +50,12 @@ const Login = () => {
 						alt="User"
 					/>
 					<input
+						name="password"
 						placeholder="Contraseña"
 						className="login-register-form__input"
 						type="password"
 						required
+						onChange={handleInput}
 					/>
 				</label>
 				<button className="login-register-form__button" type="submit">
