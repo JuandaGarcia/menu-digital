@@ -8,31 +8,36 @@ const LoginRegisterContainer = ({ match }) => {
 	return (
 		<div className="login-register">
 			<div className="login-register__form">
-				<img
-					className="login-register__form__logo"
-					src="/img/logos/delimenu.svg"
-					alt="Logo"
-				/>
+				<Link to="/">
+					<img
+						className="login-register__form__logo"
+						src="/img/logos/delimenu.svg"
+						alt="Logo"
+					/>
+				</Link>
 				{match.path === '/login' ? <Login /> : <Register />}
-				<div>
-					<span>
-						¿No tienes cuenta?
-						{match.path === '/login' ? (
+				<div className="login-register__links-question">
+					{match.path === '/login' ? (
+						<span>
+							¿No tienes cuenta?
 							<Link
 								className="login-register__form__question__link"
 								to="/register"
 							>
 								<strong> Regístrate</strong>
 							</Link>
-						) : (
+						</span>
+					) : (
+						<span>
+							¿Ya tienes cuenta?
 							<Link
 								className="login-register__form__question__link"
 								to="/login"
 							>
 								<strong> Inicia sesión</strong>
 							</Link>
-						)}
-					</span>
+						</span>
+					)}
 					<div className="login-register__form__links">
 						<Link className="login-register__form__links--link" to="/">
 							Términos y condiciones
@@ -46,7 +51,7 @@ const LoginRegisterContainer = ({ match }) => {
 						<br />
 						<br />
 						<span className="login-register__form__links--link">
-							© 2020 delimenu, Inc.
+							© 2020 delimenú, Inc.
 						</span>
 					</div>
 				</div>
