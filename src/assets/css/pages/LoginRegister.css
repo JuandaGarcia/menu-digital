@@ -49,6 +49,18 @@
 	margin-top: 3em;
 }
 
+.regirter-grid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1.5em;
+	margin-top: 3em;
+}
+
+.regirter-grid--division {
+	grid-column: span 2;
+}
+
 .login-register-form__label {
 	height: 3em;
 	background: #383838;
@@ -62,10 +74,15 @@
 	overflow: hidden;
 }
 
+.register-grid__correccion-icon {
+	grid-template-columns: 2fr 10fr;
+}
+
 .login-register-form__input {
 	background: none;
 	height: 100%;
 	font-size: 1.1em;
+	padding-right: 1em;
 	outline: none;
 	border: none;
 	width: 100%;
@@ -85,6 +102,11 @@
 	background: #ffefd5;
 	font-size: 1.1em;
 	font-weight: 600;
+	transition: 0.2s all ease;
+}
+
+.login-register-form__button:hover {
+	background: #ffdeaa;
 }
 
 .login-register__form__question__link {
@@ -93,10 +115,32 @@
 
 .login-register__form__links {
 	margin-top: 2em;
+	padding-top: 1em;
+	width: 100%;
+	border-top: 1px solid #383838;
+}
+
+.login-register__links-question {
+	width: 100%;
 }
 
 .login-register__form__links--link {
 	color: #727272;
 	font-size: 0.9em;
 	margin-right: 1em;
+}
+
+@media screen and (max-width: 1024px) {
+	.login-register {
+		grid-template-columns: 2fr 3fr;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.login-register {
+		grid-template-columns: 1fr;
+	}
+	.login-register__content {
+		display: none;
+	}
 }

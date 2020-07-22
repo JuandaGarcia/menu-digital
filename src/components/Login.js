@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Login = () => {
+	useEffect(() => {
+		document.title = 'Delimenú - Inicio de sesión'
+	}, [])
+
 	const handleSubmit = (event) => {
 		event.preventDefault()
 	}
@@ -12,7 +16,7 @@ const Login = () => {
 				<label className="login-register-form__label">
 					<img
 						className="login-register-form__label__icon"
-						src="/img/icons/user.svg"
+						src="/img/icons/mail.svg"
 						alt="User"
 					/>
 					<input
