@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react'
-import { auth } from '../firebase'
+import React, { useContext, useEffect } from 'react'
+import { AuthContext } from '../components/Auth'
+import UserPanel from '../components/UserPanel'
+import LandingPage from '../components/LandingPage'
 
 const Home = () => {
+	const { currentUser } = useContext(AuthContext)
+
 	useEffect(() => {
-		const user = auth.currentUser
-		if (user) {
-			console.log('Esta logueado')
-		} else {
-			console.log('No Esta logueado')
-		}
+		document.title = 'Delimenú - Home'
 	}, [])
-	return <div>Hola</div>
+
+	if (currentUser) {
+		return <UserPanel />
+	}
+	return <LandingPage />
 }
 
 export default Home

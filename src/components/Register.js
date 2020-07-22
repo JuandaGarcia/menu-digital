@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Loader from '../components/Loader'
-import { auth } from '../firebase'
+import app from '../firebaseConfig'
+import { AuthContext } from './Auth'
+import { Redirect } from 'react-router-dom'
 
 const Login = () => {
 	const [form, setValues] = useState({})
 	const [loading, setLoading] = useState(false)
 	const [errors, setErrors] = useState({})
+	const { currentUser } = useContext(AuthContext)
 
 	useEffect(() => {
 		document.title = 'Delimenú - Registro'
@@ -26,7 +29,8 @@ const Login = () => {
 			.querySelectorAll('input')
 			.forEach((input) => (input.disabled = true))
 		if (form.password === form.confirmPassword) {
-			auth
+			app
+				.auth()
 				.createUserWithEmailAndPassword(form.email, form.password)
 				.then((userCredentials) => {
 					return userCredentials.user.updateProfile({
@@ -53,6 +57,10 @@ const Login = () => {
 			.querySelectorAll('input')
 			.forEach((input) => (input.disabled = false))
 		setLoading(false)
+	}
+
+	if (currentUser) {
+		return <Redirect to="/" />
 	}
 
 	return (
