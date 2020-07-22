@@ -1,0 +1,102 @@
+.login-register {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	min-height: 100vh;
+}
+
+.login-register__content {
+	background: #44ea7c;
+	padding: 2.5em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-register__content__title {
+	font-size: 4em;
+	font-weight: 600;
+	text-align: center;
+}
+
+.login-register__content__image {
+	width: 80%;
+}
+
+.login-register-container__grid {
+	margin-bottom: 5em;
+}
+
+.login-register__form {
+	background: #000;
+	color: #fff;
+	padding: 5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.login-register__form__logo {
+	height: 2.5em;
+}
+
+.login-grid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 1.5em;
+	margin-top: 3em;
+}
+
+.login-register-form__label {
+	height: 3em;
+	background: #383838;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	display: grid;
+	grid-template-columns: 1fr 10fr;
+	justify-items: center;
+	overflow: hidden;
+}
+
+.login-register-form__input {
+	background: none;
+	height: 100%;
+	font-size: 1.1em;
+	outline: none;
+	border: none;
+	width: 100%;
+	color: #fff;
+}
+
+.login-register-form__label__icon {
+	width: 40%;
+}
+
+.login-register-form__button {
+	margin-top: 1em;
+	height: 3em;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	background: #ffefd5;
+	font-size: 1.1em;
+	font-weight: 600;
+}
+
+.login-register__form__question__link {
+	color: white;
+}
+
+.login-register__form__links {
+	margin-top: 2em;
+}
+
+.login-register__form__links--link {
+	color: #727272;
+	font-size: 0.9em;
+	margin-right: 1em;
+}
