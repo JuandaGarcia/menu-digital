@@ -1,0 +1,31 @@
+.mi-menu__container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.mi-menu__container__input {
+	font-size: 2em;
+	border: none;
+	text-align: center;
+	outline: none;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #383838;
+	width: 70%;
+}
+
+.mi-menu__container__input:focus {
+	border-bottom: 1px solid #383838;
+}
+
+.mi-menu__container__label {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.mi-menu__no-sections {
+	margin-top: 10em;
+	font-size: 1.2em;
+}

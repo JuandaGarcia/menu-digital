@@ -1,0 +1,86 @@
+.modal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal__exitBackground {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__container {
+	width: 40%;
+	height: auto;
+	padding: 2em;
+	background: #fff;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	position: relative;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+.modal__container__button {
+	width: auto;
+	height: 3.5em;
+	background: #000;
+	border: 2px solid #000;
+	outline: none;
+	border-radius: 25px;
+	text-transform: uppercase;
+	cursor: pointer;
+	color: #fff;
+	transition: all 0.2s ease 0s;
+	margin-top: 2em;
+	font-weight: bold;
+	font-size: 10px;
+	padding: 0.5em 2em;
+	box-sizing: content-box;
+}
+
+.modal__container__button:hover {
+	background: #fff;
+	color: #000;
+}
+
+.modal__container__exit {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	right: -20px;
+	top: -20px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 50%;
+	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+	background: #ffffff url(/img/icons/close.png) no-repeat center center;
+	transition: all 0.2s ease 0s;
+}
+
+.modal__container__exit:hover {
+	background: #eeeeee url(/img/icons/close.png) no-repeat center center;
+}
+
+.input-modal__new-section {
+	margin-top: 1.5em;
+	height: 3em;
+	width: 50%;
+	padding: 0 1em;
+	font-size: 0.8em;
+	font-weight: 500;
+}
