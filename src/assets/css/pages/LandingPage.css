@@ -61,6 +61,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	z-index: 10;
 }
 
 .landing-container__main--h1 {
@@ -84,6 +85,15 @@
 	transform: translate(-50%, 0);
 }
 
+.fadeIn {
+	-webkit-animation-duration: 10s;
+	animation-duration: 2s;
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
 @media screen and (max-width: 768px) {
 	.landing-container__main--h1 {
 		font-size: 4em;
@@ -94,5 +104,14 @@
 	.header-landing {
 		padding: 2em 12%;
 		height: 6em;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
