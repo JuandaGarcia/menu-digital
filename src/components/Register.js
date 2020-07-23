@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Loader from '../components/Loader'
 import app from '../firebaseConfig'
+import SignInSocial from './SignInSocial'
 import { AuthContext } from './Auth'
 import { Redirect } from 'react-router-dom'
 
@@ -135,6 +136,7 @@ const Login = () => {
 					value="Registrarse"
 				/>
 			</form>
+			<SignInSocial setErrors={(e) => setErrors(e)} />
 			{loading && <Loader />}
 			<div className="login-register__errors">
 				<span>
@@ -153,6 +155,14 @@ const Login = () => {
 							<li className="login-register__errors--li">
 								Ocurrió un error al enviar la información. Por favor intenta de
 								nuevo
+							</li>
+						)}
+						{errors.facebook && (
+							<li className="login-register__errors--li">
+								Ya existe una cuenta con la misma dirección de correo
+								electrónico en un proveedor asociado con esta dirección de
+								correo electrónico. Intenta ingresar con el correo electrónico o
+								con Google.
 							</li>
 						)}
 					</ul>

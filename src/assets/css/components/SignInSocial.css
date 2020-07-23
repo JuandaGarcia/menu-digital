@@ -1,0 +1,56 @@
+.sign-in-social {
+	width: 100%;
+	margin-top: 2em;
+}
+
+.sign-in-social__container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sign-in-social__button {
+	width: 4em;
+	height: 4em;
+	margin: 0 1.5em;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+}
+
+.sign-in-social__button--google {
+	background: #fff;
+}
+
+.sign-in-social__button--facebook {
+	background-image: linear-gradient(to left, #00c6fb 0%, #005bea 100%);
+}
+
+.sign-in-social__button--img {
+	width: 2em;
+}
+
+.sign-in-social__container {
+	margin-top: 1em;
+}
+
+.sign-in-social__divider {
+	border: none;
+	border-top: 1px solid #383838;
+	position: relative;
+	overflow: visible;
+	text-align: center;
+}
+
+.sign-in-social__divider::after {
+	content: 'O';
+	position: relative;
+	display: inline-block;
+	color: #383838;
+	background: #000;
+	width: 2em;
+	text-align: center;
+	top: -10px;
+	font-weight: 600;
+}
