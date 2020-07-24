@@ -2,13 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import '../assets/css/components/Modal.css'
 
-const Modal = ({ children, closeModal, setTemporalFoodEdit }) => {
+const Modal = ({ children, closeModal, setTemporalFoodEdit, isMiMenu }) => {
 	return ReactDOM.createPortal(
 		<div className="modal">
 			<div
 				onClick={() => {
 					closeModal(false)
-					setTemporalFoodEdit('')
+					if (isMiMenu) {
+						setTemporalFoodEdit('')
+					}
 				}}
 				className="modal__exitBackground"
 			></div>
@@ -16,7 +18,9 @@ const Modal = ({ children, closeModal, setTemporalFoodEdit }) => {
 				<button
 					onClick={() => {
 						closeModal(false)
-						setTemporalFoodEdit('')
+						if (isMiMenu) {
+							setTemporalFoodEdit('')
+						}
 					}}
 					className="modal__container__exit"
 				></button>

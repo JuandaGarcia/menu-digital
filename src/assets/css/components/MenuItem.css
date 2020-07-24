@@ -12,6 +12,7 @@
 	color: #000;
 	border-top-left-radius: 5em;
 	border-bottom-left-radius: 5em;
+	cursor: pointer;
 }
 
 .menu__item:hover {
@@ -41,4 +42,8 @@
 
 .menu__item__content {
 	padding-left: 14em;
+}
+.menu__item__content p,
+.menu__item__content h3 {
+	cursor: pointer;
 }

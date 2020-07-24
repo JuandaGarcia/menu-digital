@@ -2,6 +2,7 @@ import React from 'react'
 import '../assets/css/components/SignInSocial.css'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import Notiflix from 'notiflix'
 
 const SignInSocial = ({ setErrors }) => {
 	// const googleProvider = new firebase.auth.GoogleAuthProvider()
@@ -12,7 +13,7 @@ const SignInSocial = ({ setErrors }) => {
 	// 		.auth()
 	// 		.signInWithPopup(googleProvider)
 	// 		.catch((err) => {
-	// 			alert(
+	// 			Notiflix.Notify.Failure(
 	// 				'Algo salió mal al intentar ingresar con Google, por favor inténtalo de nuevo.'
 	// 			)
 	// 		})
@@ -28,7 +29,7 @@ const SignInSocial = ({ setErrors }) => {
 						facebook: true,
 					})
 				} else {
-					alert(
+					Notiflix.Notify.Failure(
 						'Algo salió mal al intentar ingresar con Facebook, por favor inténtalo de nuevo.'
 					)
 				}

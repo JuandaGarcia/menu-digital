@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import { AuthContext } from '../components/Auth'
 import { Redirect } from 'react-router-dom'
 import { database } from '../firebaseConfig'
+import { Link } from 'react-router-dom'
 import '../assets/css/pages/UserPanel.css'
 import '../assets/css/components/MiMenu.css'
 
@@ -60,9 +61,13 @@ const MiMenu = () => {
 
 	const onEditFood = async (id) => {
 		setTemporalFoodEdit(id)
-		const doc = await database.collection('foods').doc(id).get()
-		setNewFood(doc.data())
-		setOpenModal(true)
+		try {
+			const doc = await database.collection('foods').doc(id).get()
+			setNewFood(doc.data())
+			setOpenModal(true)
+		} catch (error) {
+			Notiflix.Notify.Failure('Algo salió mal. Por favor inténtalo de nuevo.')
+		}
 	}
 	const onDeleteFood = (id) => {
 		setTemporalFoodRemove(id)
@@ -163,7 +168,7 @@ const MiMenu = () => {
 				openModal={(value) => setOpenModal(value)}
 			>
 				{ModalDelete && (
-					<Modal closeModal={(value) => setModalDelete(value)}>
+					<Modal isMiMenu closeModal={(value) => setModalDelete(value)}>
 						<p>¿Quieres eliminar esta comida?</p>
 						<div>
 							<button
@@ -183,6 +188,7 @@ const MiMenu = () => {
 				)}
 				{openModal && (
 					<Modal
+						isMiMenu
 						closeModal={(value) => setOpenModal(value)}
 						setTemporalFoodEdit={(value) => setTemporalFoodEdit(value)}
 					>
@@ -239,16 +245,12 @@ const MiMenu = () => {
 						<div className="menu-link-qr fadeIn">
 							<p>
 								Tu menú esta disponible en:
-								<a
+								<Link
 									className="menu-link-qr__link"
-									rel="noopener noreferrer"
-									target="_blank"
-									href={`${window.location.origin.toString()}/menu/${
-										currentUser.uid
-									}`}
+									to={`/menu/${currentUser.uid}`}
 								>{` ${window.location.origin.toString()}/menu/${
 									currentUser.uid
-								}`}</a>
+								}`}</Link>
 							</p>
 							<a
 								className="menu-link-qr__qr"

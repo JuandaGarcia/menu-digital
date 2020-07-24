@@ -26,7 +26,7 @@
 .header__button {
 	grid-area: shopping-cart;
 	background: none;
-	height: 100%;
+	height: 8em;
 	outline: none;
 	border: none;
 	position: relative;
@@ -47,14 +47,21 @@
 
 .header__button__count {
 	position: absolute;
-	right: 1.9em;
-	top: 2.7em;
+	right: 0.2em;
+	top: 1.7em;
+	height: 1.5em;
+	width: 1.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: rgb(255, 106, 106);
 	font-weight: bold;
 	color: #fff;
 }
 
 .header__logo {
-	height: 60%;
+	width: 10em;
 	grid-area: logo;
 }
 
@@ -69,12 +76,14 @@
 	width: 50%;
 	align-self: center;
 	justify-self: center;
+	text-align: center;
 }
 
 .menu {
 	margin-top: 2em;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+	grid-column-gap: 2em;
 	padding: 0 3em;
 }
 
@@ -84,10 +93,36 @@
 	flex-direction: column;
 }
 
+.fullscreen-loader {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.fullscreen-loader__img {
+	width: 50%;
+}
+
+.no-food {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 5em;
+}
+
 @media screen and (max-width: 1024px) {
 	.menu {
-		grid-template-columns: 1fr;
-		padding: 0 1em;
+		padding: 0 2em;
+	}
+
+	.header {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 8em 8em;
+		grid-template-areas:
+			'logo shopping-cart'
+			'input input';
 	}
 	.header__input {
 		width: 90%;
