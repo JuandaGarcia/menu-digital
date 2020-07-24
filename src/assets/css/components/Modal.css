@@ -87,12 +87,23 @@
 }
 
 .input-modal__new-food {
-	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 	height: 3em;
 	width: 100%;
 	padding: 0 1em;
 	font-size: 0.8em;
 	font-weight: 500;
+}
+
+.input-modal__new-food--textarea {
+	height: 8em;
+	resize: none;
+	width: 100%;
+	padding-top: 1em;
+}
+
+.input-modal__new-food::placeholder {
+	color: rgb(230, 230, 230);
 }
 
 .modal__new-food__form {

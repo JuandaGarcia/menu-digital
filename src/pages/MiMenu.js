@@ -15,6 +15,7 @@ const MiMenu = () => {
 	const [NewFood, setNewFood] = useState('')
 	const [foods, setfoods] = useState([])
 	const [active, setActive] = useState(false)
+	const [temporalFoodEdit, setTemporalFoodEdit] = useState('')
 	const [temporalFoodRemove, setTemporalFoodRemove] = useState('')
 	const [ModalDelete, setModalDelete] = useState(false)
 	const [loaders, setLoaders] = useState({
@@ -48,6 +49,10 @@ const MiMenu = () => {
 		setOpenModal(false)
 	}
 
+	const onEditFood = (id) => {
+		setTemporalFoodEdit(id)
+		console.log(id)
+	}
 	const onDeleteFood = (id) => {
 		setTemporalFoodRemove(id)
 		setModalDelete(true)
@@ -156,12 +161,11 @@ const MiMenu = () => {
 				)}
 				{openModal && (
 					<Modal closeModal={(value) => setOpenModal(value)}>
-						<p>Nombre de la sección</p>
 						<form onSubmit={handleSubmit} className="modal__new-food__form">
 							<label>
 								Nombre
 								<input
-									placeholder="Hamburguesa doble"
+									placeholder="Hamburguesa doble..."
 									type="text"
 									name="name"
 									onChange={handleInput}
@@ -170,23 +174,28 @@ const MiMenu = () => {
 									className="input-modal__new-food newfoodForm"
 								/>
 							</label>
-							<input
-								placeholder="Bebidas, Postres, Aperitivos..."
-								type="number"
-								name="price"
-								onChange={handleInput}
-								required
-								className="input-modal__new-food newfoodForm"
-							/>
-							<input
-								placeholder="Bebidas, Postres, Aperitivos..."
-								type="text"
-								name="description"
-								onChange={handleInput}
-								required
-								maxLength="50"
-								className="input-modal__new-food newfoodForm"
-							/>
+							<label>
+								Precio
+								<input
+									placeholder="20000..."
+									type="number"
+									name="price"
+									onChange={handleInput}
+									required
+									className="input-modal__new-food newfoodForm"
+								/>
+							</label>
+							<label>
+								Descripción
+								<textarea
+									placeholder="es un tipo de sándwich hecho a base de carne molida aglutinada en forma de filete cocinado a la parrilla o a la plancha, aunque también puede freírse u hornearse..."
+									type="text"
+									name="description"
+									onChange={handleInput}
+									required
+									className="input-modal__new-food input-modal__new-food--textarea newfoodForm"
+								/>
+							</label>
 							<input
 								type="submit"
 								className="modal__container__button newfoodForm"
@@ -246,6 +255,9 @@ const MiMenu = () => {
 												<p>{food.description}</p>
 												<strong>{food.price}</strong>
 												<button onClick={() => onDeleteFood(food.id)}>X</button>
+												<button onClick={() => onEditFood(food.id)}>
+													edit
+												</button>
 											</div>
 										)
 									})}
