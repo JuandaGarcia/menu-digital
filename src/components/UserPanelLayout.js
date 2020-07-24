@@ -15,7 +15,7 @@ const UserPanelLayout = ({ children, title, isMiMenu, openModal }) => {
 							onClick={() => openModal(true)}
 							className="user-panel__title--button"
 						>
-							Añadir sección
+							Añadir alimento
 							<img
 								className="user-panel__title--button-icon"
 								src="/img/icons/plus-circle.svg"
