@@ -10,9 +10,14 @@ import '../assets/css/pages/UserPanel.css'
 import '../assets/css/components/MiMenu.css'
 
 const MiMenu = () => {
+	const InitialStateInputValues = {
+		name: '',
+		price: '',
+		description: '',
+	}
 	const { currentUser } = useContext(AuthContext)
 	const [openModal, setOpenModal] = useState(false)
-	const [NewFood, setNewFood] = useState('')
+	const [NewFood, setNewFood] = useState(InitialStateInputValues)
 	const [foods, setfoods] = useState([])
 	const [active, setActive] = useState(false)
 	const [temporalFoodEdit, setTemporalFoodEdit] = useState('')
@@ -41,7 +46,11 @@ const MiMenu = () => {
 			.querySelectorAll('.newfoodForm')
 			.forEach((input) => (input.disabled = true))
 
-		await addfood()
+		if (temporalFoodEdit) {
+			await confirmEditFood()
+		} else {
+			await addfood()
+		}
 
 		document
 			.querySelectorAll('.newfoodForm')
@@ -49,9 +58,11 @@ const MiMenu = () => {
 		setOpenModal(false)
 	}
 
-	const onEditFood = (id) => {
+	const onEditFood = async (id) => {
 		setTemporalFoodEdit(id)
-		console.log(id)
+		const doc = await database.collection('foods').doc(id).get()
+		setNewFood(doc.data())
+		setOpenModal(true)
 	}
 	const onDeleteFood = (id) => {
 		setTemporalFoodRemove(id)
@@ -69,6 +80,17 @@ const MiMenu = () => {
 			)
 		}
 		setTemporalFoodRemove('')
+	}
+
+	const confirmEditFood = async () => {
+		try {
+			await database.collection('foods').doc(temporalFoodEdit).update(NewFood)
+			Notiflix.Notify.Success('Se actualizo la comida correctamente.')
+		} catch (error) {
+			Notiflix.Notify.Failure('Algo salió mal. Por favor inténtalo de nuevo.')
+		}
+		setNewFood(InitialStateInputValues)
+		setTemporalFoodEdit('')
 	}
 
 	const getfoods = async () => {
@@ -129,7 +151,7 @@ const MiMenu = () => {
 			newfoodLoader: false,
 		})
 
-		setNewFood('')
+		setNewFood(InitialStateInputValues)
 	}
 
 	if (currentUser) {
@@ -160,12 +182,18 @@ const MiMenu = () => {
 					</Modal>
 				)}
 				{openModal && (
-					<Modal closeModal={(value) => setOpenModal(value)}>
+					<Modal
+						closeModal={(value) => setOpenModal(value)}
+						setTemporalFoodEdit={(value) => setTemporalFoodEdit(value)}
+					>
 						<form onSubmit={handleSubmit} className="modal__new-food__form">
+							<h2>{temporalFoodEdit ? 'Editar' : 'Añadir'}</h2>
+							<br />
 							<label>
 								Nombre
 								<input
 									placeholder="Hamburguesa doble..."
+									value={NewFood.name}
 									type="text"
 									name="name"
 									onChange={handleInput}
@@ -178,6 +206,7 @@ const MiMenu = () => {
 								Precio
 								<input
 									placeholder="20000..."
+									value={NewFood.price}
 									type="number"
 									name="price"
 									onChange={handleInput}
@@ -189,6 +218,7 @@ const MiMenu = () => {
 								Descripción
 								<textarea
 									placeholder="es un tipo de sándwich hecho a base de carne molida aglutinada en forma de filete cocinado a la parrilla o a la plancha, aunque también puede freírse u hornearse..."
+									value={NewFood.description}
 									type="text"
 									name="description"
 									onChange={handleInput}
@@ -199,7 +229,7 @@ const MiMenu = () => {
 							<input
 								type="submit"
 								className="modal__container__button newfoodForm"
-								value="Añadir comida"
+								value={temporalFoodEdit ? 'Editar comida' : 'Añadir comida'}
 							/>
 						</form>
 					</Modal>
