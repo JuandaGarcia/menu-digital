@@ -19,7 +19,7 @@ const App = () => {
 					<Route exact path="/register" component={LoginRegisterContainer} />
 					<Route exact path="/mi-menu" component={MiMenu} />
 					<Route exact path="/mis-pedidos" component={MisPedidos} />
-					<Route exact path="/menu/:restaurant" component={Menu} />
+					<Route exact path="/menu/:id" component={Menu} />
 					<Route component={NotFound} />
 				</Switch>
 			</BrowserRouter>

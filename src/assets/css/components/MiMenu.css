@@ -37,3 +37,52 @@
 	margin-bottom: 3em;
 	padding: 2em;
 }
+
+.menu-link-qr {
+	font-weight: 500;
+	text-align: center;
+	font-size: 1.1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2em;
+}
+
+.menu-link-qr__link {
+	color: #44ea7c;
+}
+
+.menu-link-qr__qr {
+	display: flex;
+	height: 3em;
+	margin-top: 1em;
+	width: 50%;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	border-radius: 5px;
+	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+.menu-link-qr__qr--icon {
+	height: 50%;
+	margin-left: 1em;
+}
+
+.fadeIn {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

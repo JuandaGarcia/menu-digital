@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import Notiflix from 'notiflix'
 import UserPanelLayout from '../components/UserPanelLayout'
 import Modal from '../components/Modal'
 import Loader from '../components/Loader'
@@ -13,6 +14,7 @@ const MiMenu = () => {
 	const [openModal, setOpenModal] = useState(false)
 	const [NewFood, setNewFood] = useState('')
 	const [foods, setfoods] = useState([])
+	const [active, setActive] = useState(false)
 	const [temporalFoodRemove, setTemporalFoodRemove] = useState('')
 	const [ModalDelete, setModalDelete] = useState(false)
 	const [loaders, setLoaders] = useState({
@@ -21,6 +23,7 @@ const MiMenu = () => {
 
 	useEffect(() => {
 		document.title = 'Delimenú - Mi menú'
+		Notiflix.Notify.Init({ position: 'right-bottom' })
 		getfoods()
 	}, [])
 
@@ -41,7 +44,7 @@ const MiMenu = () => {
 
 		document
 			.querySelectorAll('.newfoodForm')
-			.forEach((input) => (input.disabled = true))
+			.forEach((input) => (input.disabled = false))
 		setOpenModal(false)
 	}
 
@@ -54,8 +57,9 @@ const MiMenu = () => {
 		setModalDelete(false)
 		try {
 			await database.collection('foods').doc(temporalFoodRemove).delete()
+			Notiflix.Notify.Success('Se eliminó la comida correctamente.')
 		} catch (error) {
-			alert(
+			Notiflix.Notify.Failure(
 				'Algo salió mal al intentar eliminar la información. Por favor inténtalo de nuevo.'
 			)
 		}
@@ -87,7 +91,7 @@ const MiMenu = () => {
 					})
 				})
 		} catch (error) {
-			alert(
+			Notiflix.Notify.Failure(
 				'Ocurrió un error al traer la información. Por favor inténtalo de nuevo.'
 			)
 		}
@@ -107,8 +111,9 @@ const MiMenu = () => {
 
 		try {
 			await database.collection('foods').doc().set(newfood)
+			Notiflix.Notify.Success('Se añadió la comida correctamente.')
 		} catch (error) {
-			alert(
+			Notiflix.Notify.Failure(
 				'Algo salió mal al intentar enviar la información. Por favor inténtalo de nuevo.'
 			)
 			setOpenModal(false)
@@ -127,11 +132,12 @@ const MiMenu = () => {
 			<UserPanelLayout
 				isMiMenu
 				title="Mi menú"
+				setActive={(value) => setActive(value)}
 				openModal={(value) => setOpenModal(value)}
 			>
 				{ModalDelete && (
 					<Modal closeModal={(value) => setModalDelete(value)}>
-						<p>¿Quieres eliminar este alimento?</p>
+						<p>¿Quieres eliminar esta comida?</p>
 						<div>
 							<button
 								className="modal__container__button"
@@ -181,48 +187,55 @@ const MiMenu = () => {
 								maxLength="50"
 								className="input-modal__new-food newfoodForm"
 							/>
-							{loaders.newfoodLoader ? (
-								<button
-									disabled
-									className="modal__container__button newfoodForm"
-								>
-									<Loader />
-								</button>
-							) : (
-								<input
-									type="submit"
-									className="modal__container__button newfoodForm"
-									value="Crear sección"
-								/>
-							)}
+							<input
+								type="submit"
+								className="modal__container__button newfoodForm"
+								value="Añadir comida"
+							/>
 						</form>
 					</Modal>
 				)}
 				<section className="mi-menu__container">
-					<label className="mi-menu__container__label">
-						<input
-							className="mi-menu__container__input"
-							maxLength="20"
-							placeholder="Nombre del menú..."
-							type="text"
-						/>
-					</label>
-					<a
-						href={`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${window.location.origin.toString()}/menu/${
-							currentUser.uid
-						}`}
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						s
-					</a>
+					{active && (
+						<div className="menu-link-qr fadeIn">
+							<p>
+								Tu menú esta disponible en:
+								<a
+									className="menu-link-qr__link"
+									rel="noopener noreferrer"
+									target="_blank"
+									href={`${window.location.origin.toString()}/menu/${
+										currentUser.uid
+									}`}
+								>{` ${window.location.origin.toString()}/menu/${
+									currentUser.uid
+								}`}</a>
+							</p>
+							<a
+								className="menu-link-qr__qr"
+								role="button"
+								href={`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${window.location.origin.toString()}/menu/${
+									currentUser.uid
+								}`}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								Código QR del menú
+								<img
+									className="menu-link-qr__qr--icon"
+									src="/img/icons/qrcode.svg"
+									alt="QR"
+								/>
+							</a>
+						</div>
+					)}
 					{loaders.foodsLoader ? (
 						<Loader />
 					) : (
 						<>
 							{foods.length === 0 ? (
 								<div className="mi-menu__no-foods">
-									<span>Todavía no tienes alimentos en tu menú</span>
+									<span>Todavía no tienes comida en tu menú</span>
 								</div>
 							) : (
 								<>
