@@ -57,6 +57,16 @@
 	color: #000;
 }
 
+.modal__container__button--red {
+	background: rgb(255, 93, 93);
+	border: 2px solid rgb(255, 93, 93);
+	margin-left: 2em;
+}
+.modal__container__button--red:hover {
+	background: #fff;
+	color: rgb(255, 93, 93);
+}
+
 .modal__container__exit {
 	width: 40px;
 	height: 40px;
@@ -76,11 +86,17 @@
 	background: #eeeeee url(/img/icons/close.png) no-repeat center center;
 }
 
-.input-modal__new-section {
+.input-modal__new-food {
 	margin-top: 1.5em;
 	height: 3em;
-	width: 50%;
+	width: 100%;
 	padding: 0 1em;
 	font-size: 0.8em;
 	font-weight: 500;
+}
+
+.modal__new-food__form {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
 }

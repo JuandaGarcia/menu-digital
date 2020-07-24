@@ -25,7 +25,15 @@
 	justify-content: center;
 }
 
-.mi-menu__no-sections {
+.mi-menu__no-foods {
 	margin-top: 10em;
 	font-size: 1.2em;
+}
+
+.food-container {
+	width: 100%;
+	box-shadow: 0px 16px 40px rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	margin-bottom: 3em;
+	padding: 2em;
 }
