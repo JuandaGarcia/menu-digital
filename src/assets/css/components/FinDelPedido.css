@@ -13,6 +13,23 @@
 	width: 20%;
 }
 
+.landing__button__main {
+	height: 3em;
+	margin-top: 2.5em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 10;
+}
+
+.landing__button {
+	color: #fff;
+	background: #44ea7c;
+	border-radius: 25px;
+	padding: 0.6em 1.5em;
+	font-weight: 600;
+}
+
 @media screen and (max-width: 768px) {
 	.succesful-order__image {
 		width: 50%;
