@@ -93,12 +93,15 @@
 	padding: 1.5em 0;
 	border-bottom: 1px solid #383838;
 	margin-bottom: 2em;
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: 'title button switch';
 	justify-content: space-between;
 }
 
 .user-panel__title--h1 {
 	font-weight: 600;
+	grid-area: title;
 }
 
 .user-panel__main {
@@ -167,6 +170,8 @@
 
 .user-panel__title--button {
 	background: #44ea7c;
+	grid-area: button;
+	justify-self: center;
 	color: #fff;
 	border: none;
 	outline: none;
@@ -230,6 +235,8 @@
 
 .switch-container {
 	display: flex;
+	justify-self: flex-end;
+	grid-area: switch;
 	align-items: center;
 }
 
@@ -244,7 +251,7 @@
 		width: 80%;
 	}
 	.user-panel__header {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 40% 60%;
 		grid-template-rows: 3em 3em;
 		grid-template-areas:
 			'logo profile'
@@ -258,5 +265,17 @@
 	}
 	.user-panel__main__link {
 		width: 80%;
+	}
+
+	.user-panel__title--button {
+		height: 3em;
+		margin-top: 2em;
+	}
+	.user-panel__title {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto;
+		grid-template-areas:
+			'title switch'
+			'button button';
 	}
 }

@@ -112,6 +112,68 @@
 	margin-top: 5em;
 }
 
+.carrito-row {
+	width: 100%;
+	display: grid;
+	grid-template-columns: minmax(auto, 1fr) repeat(3, 1fr);
+	grid-column-gap: 1em;
+	grid-template-rows: 2em;
+	align-items: center;
+}
+
+.carrito-row span:nth-child(3),
+.carrito-row span:nth-child(2),
+.carrito-row h4:nth-child(2),
+.carrito-row h4:nth-child(3),
+.carrito-row h4:nth-child(4) {
+	justify-self: center;
+}
+
+.carrito-total {
+	width: 100%;
+	margin-top: 1em;
+	padding-top: 1em;
+	border-top: 1px solid rgb(221, 221, 221);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.no-products {
+	margin: 1em 0;
+}
+
+.delete-product-cart {
+	background: rgb(255, 143, 143);
+	border-radius: 5px;
+	font-weight: 500;
+	color: #fff;
+	padding: 0.7em 2em;
+	border: none;
+	outline: none;
+	justify-self: center;
+}
+
+.input-mesa {
+	-webkit-appearance: none;
+	border: none;
+	background: rgb(228, 228, 228);
+	border-radius: 5px;
+	margin-left: 1em;
+	outline: none;
+	padding: 1em;
+	height: 3em;
+	width: 5em;
+}
+
+.formulario-pedido {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 @media screen and (max-width: 1024px) {
 	.menu {
 		padding: 0 2em;

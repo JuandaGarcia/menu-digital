@@ -168,7 +168,11 @@ const MiMenu = () => {
 				openModal={(value) => setOpenModal(value)}
 			>
 				{ModalDelete && (
-					<Modal isMiMenu closeModal={(value) => setModalDelete(value)}>
+					<Modal
+						isMiMenu
+						setTemporalFoodEdit={(value) => setTemporalFoodEdit(value)}
+						closeModal={(value) => setModalDelete(value)}
+					>
 						<p>¿Quieres eliminar esta comida?</p>
 						<div>
 							<button
@@ -245,6 +249,7 @@ const MiMenu = () => {
 						<div className="menu-link-qr fadeIn">
 							<p>
 								Tu menú esta disponible en:
+								<br />
 								<Link
 									className="menu-link-qr__link"
 									to={`/menu/${currentUser.uid}`}
@@ -284,12 +289,24 @@ const MiMenu = () => {
 										return (
 											<div key={food.id} className="food-container">
 												<h2>{food.name}</h2>
+												<br />
 												<p>{food.description}</p>
-												<strong>{food.price}</strong>
-												<button onClick={() => onDeleteFood(food.id)}>X</button>
-												<button onClick={() => onEditFood(food.id)}>
-													edit
-												</button>
+												<br />
+												<strong>$ {food.price}</strong>
+												<div className="food-container__buttons">
+													<button
+														className="food-container-button food-container__button-edit"
+														onClick={() => onEditFood(food.id)}
+													>
+														Editar
+													</button>
+													<button
+														className="food-container-button food-container__button-delete"
+														onClick={() => onDeleteFood(food.id)}
+													>
+														Eliminar
+													</button>
+												</div>
 											</div>
 										)
 									})}

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Notiflix from 'notiflix'
 import NotFound from './NotFound'
 import Modal from '../components/Modal'
+import FinDelPedido from '../components/FinDelPedido'
 import '../assets/css/pages/Home.css'
 
 const Menu = ({ match }) => {
@@ -15,6 +16,8 @@ const Menu = ({ match }) => {
 	const [carrito, setCarrito] = useState([])
 	const [carritoNumber, setCarritoNumber] = useState(0)
 	const [openModal, setOpenModal] = useState(false)
+	const [MesaUsuario, setMesaUsuario] = useState('')
+	const [SuccessfulOrder, setSuccessfulOrder] = useState(false)
 
 	const [textoBusqueda, setTextoBusqueda] = useState('')
 	const [searchResult, setSearchResult] = useState([])
@@ -58,6 +61,42 @@ const Menu = ({ match }) => {
 		}
 	}
 
+	const deleteProductToCart = (id) => {
+		const carritoTemporal = carrito
+		const index = carrito.findIndex((item) => item.id === id)
+		setCarritoNumber(carritoNumber - carrito[index].cantidad)
+		carritoTemporal.splice(index, 1)
+		setCarrito(carritoTemporal)
+	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+
+		if (!carrito.length) {
+			Notiflix.Notify.Warning('No tienes productos en el carrito')
+		} else {
+			document
+				.querySelectorAll('.menuForm')
+				.forEach((input) => (input.disabled = true))
+			try {
+				const NuevoPedido = {
+					products: [...carrito],
+					mesa: MesaUsuario,
+					total: carritoTotal(),
+				}
+				await database.collection('pedidos').doc().set(NuevoPedido)
+				Notiflix.Notify.Success('El pedido se realizo correctamente.')
+				setSuccessfulOrder(true)
+			} catch (error) {
+				Notiflix.Notify.Failure('Algo salió mal. Por favor inténtalo de nuevo.')
+				setOpenModal(false)
+			}
+			document
+				.querySelectorAll('.menuForm')
+				.forEach((input) => (input.disabled = false))
+		}
+	}
+
 	const handleChange = (e) => {
 		const texto = e.target.value
 		setTextoBusqueda(texto)
@@ -67,6 +106,14 @@ const Menu = ({ match }) => {
 		})
 
 		setSearchResult(search)
+	}
+
+	const carritoTotal = () => {
+		let total = 0
+		carrito.forEach((food) => {
+			total += food.price * food.cantidad
+		})
+		return total
 	}
 
 	const getMenuState = async () => {
@@ -94,11 +141,66 @@ const Menu = ({ match }) => {
 		return <NotFound />
 	}
 
+	if (SuccessfulOrder) {
+		return <FinDelPedido />
+	}
+
 	if (active) {
 		return (
 			<>
 				{openModal && (
-					<Modal closeModal={(value) => setOpenModal(value)}></Modal>
+					<Modal closeModal={(value) => setOpenModal(value)}>
+						<div className="carrito-row">
+							<h4>Producto</h4>
+							<h4>Precio</h4>
+							<h4>Cantidad</h4>
+							<h4>Eliminar</h4>
+						</div>
+						{!carrito.length && (
+							<div className="no-products">
+								Aun no hay productos en el carrito
+							</div>
+						)}
+						{carrito.map((food) => {
+							return (
+								<div key={food.id} className="carrito-row">
+									<span>{food.name}</span>
+									<span>$ {food.price}</span>
+									<span>{food.cantidad}</span>
+									<button
+										className="delete-product-cart"
+										onClick={() => deleteProductToCart(food.id)}
+									>
+										Eliminar
+									</button>
+								</div>
+							)
+						})}
+						<form className="formulario-pedido" onSubmit={handleSubmit}>
+							<div className="carrito-total">
+								<label>
+									Mesa en la que te encuentras:
+									<input
+										className="input-mesa menuForm"
+										required
+										value={MesaUsuario}
+										onChange={(e) => setMesaUsuario(e.target.value)}
+										type="number"
+									/>
+								</label>
+							</div>
+							<div className="carrito-total">
+								<p>
+									<strong>Total: ${carritoTotal()}</strong>
+								</p>
+							</div>
+							<input
+								type="submit"
+								className="modal__container__button menuForm"
+								value="Realizar pedido"
+							/>
+						</form>
+					</Modal>
 				)}
 				<div className="main-container">
 					<header className="header">

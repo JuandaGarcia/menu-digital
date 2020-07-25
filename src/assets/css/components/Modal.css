@@ -20,7 +20,9 @@
 }
 
 .modal__container {
-	width: 40%;
+	min-width: 40%;
+	max-width: 80%;
+	width: auto;
 	height: auto;
 	padding: 2em;
 	background: #fff;
@@ -111,4 +113,10 @@
 	display: flex;
 	flex-direction: column;
 	width: 70%;
+}
+
+@media screen and (max-width: 768px) {
+	.modal__container {
+		padding: 2em;
+	}
 }

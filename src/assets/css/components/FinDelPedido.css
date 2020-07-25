@@ -1,0 +1,20 @@
+.succesful-order {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 10em;
+}
+
+.succesful-order__image {
+	width: 20%;
+}
+
+@media screen and (max-width: 768px) {
+	.succesful-order__image {
+		width: 50%;
+	}
+}

@@ -28,7 +28,9 @@ const MenuItem = ({ id, name, price, description, addToCart }) => {
 			{openModal && (
 				<Modal closeModal={(value) => setOpenModal(value)}>
 					<h2>{name}</h2>
+					<br />
 					<p>{description}</p>
+					<br />
 					<p>
 						<strong>$ {price}</strong>
 					</p>
@@ -51,7 +53,7 @@ const MenuItem = ({ id, name, price, description, addToCart }) => {
 				<div className="menu__item__content">
 					<h3>{name}</h3>
 					<br />
-					<p>{description}</p>
+					<p>{description.slice(0, 20)}...</p>
 					<br />
 					<p>
 						<strong>$ {price}</strong>

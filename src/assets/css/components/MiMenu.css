@@ -61,12 +61,41 @@
 	justify-content: center;
 	color: white;
 	border-radius: 5px;
-	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
 }
 
 .menu-link-qr__qr--icon {
 	height: 50%;
 	margin-left: 1em;
+}
+
+.food-container__buttons {
+	width: 100%;
+	margin-top: 1em;
+	display: flex;
+	justify-content: center;
+}
+
+.food-container-button {
+	height: 3em;
+	min-width: 8em;
+	margin: 0 1em;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	color: #fff;
+	font-weight: 500;
+}
+
+.food-container__button-edit {
+	background: #00c6ff;
+	background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);
+	background: linear-gradient(to right, #0072ff, #00c6ff);
+}
+.food-container__button-delete {
+	background: #ff416c;
+	background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+	background: linear-gradient(to right, #ff4b2b, #ff416c);
 }
 
 .fadeIn {
