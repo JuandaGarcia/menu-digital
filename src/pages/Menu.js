@@ -18,11 +18,13 @@ const Menu = ({ match }) => {
 	const [openModal, setOpenModal] = useState(false)
 	const [MesaUsuario, setMesaUsuario] = useState('')
 	const [SuccessfulOrder, setSuccessfulOrder] = useState(false)
+	const [Observaciones, setObservaciones] = useState('')
 
 	const [textoBusqueda, setTextoBusqueda] = useState('')
 	const [searchResult, setSearchResult] = useState([])
 
 	useEffect(() => {
+		document.title = 'Delimenú - Menú'
 		getMenuState()
 	}, [])
 
@@ -80,8 +82,10 @@ const Menu = ({ match }) => {
 				.forEach((input) => (input.disabled = true))
 			try {
 				const NuevoPedido = {
+					idUser: id,
 					products: [...carrito],
 					mesa: MesaUsuario,
+					observaciones: Observaciones,
 					total: carritoTotal(),
 				}
 				await database.collection('pedidos').doc().set(NuevoPedido)
@@ -188,6 +192,15 @@ const Menu = ({ match }) => {
 										type="number"
 									/>
 								</label>
+							</div>
+							<div className="carrito-total observaciones">
+								<h4>Observaciones</h4>
+								<textarea
+									className="observaciones__textarea"
+									onChange={(e) => setObservaciones(e.target.value)}
+									placeholder="Hamburguesa sin cebolla..."
+									type="text"
+								/>
 							</div>
 							<div className="carrito-total">
 								<p>

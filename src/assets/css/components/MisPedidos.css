@@ -1,0 +1,31 @@
+.no-orders {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 10em;
+}
+
+.order-container {
+	width: 100%;
+	box-shadow: 0px 16px 40px rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	margin-bottom: 3em;
+	padding: 2em;
+}
+
+.order-container hr {
+	border: none;
+	border-top: 1px solid rgb(231, 231, 231);
+}
+
+.order-container-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 3em;
+	width: 100%;
+	align-items: center;
+}
+
+.total-pedido {
+	font-size: 2em;
+}

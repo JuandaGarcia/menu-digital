@@ -9,7 +9,8 @@
 	position: sticky;
 	top: 0;
 	background: rgb(255, 255, 255, 0.8);
-	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: saturate(180%) blur(20px);
+	backdrop-filter: saturate(180%) blur(20px);
 	z-index: 10;
 }
 
@@ -172,6 +173,22 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+.observaciones {
+	display: flex;
+	flex-direction: column;
+}
+
+.observaciones__textarea {
+	height: 5em;
+	resize: none;
+	width: 100%;
+	margin: 1.5em 0;
+	padding: 0 1em;
+	padding-top: 1em;
+	font-size: 0.8em;
+	font-weight: 500;
 }
 
 @media screen and (max-width: 1024px) {
