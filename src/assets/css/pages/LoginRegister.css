@@ -139,12 +139,6 @@
 
 @media screen and (max-width: 1024px) {
 	.login-register {
-		grid-template-columns: 2fr 3fr;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.login-register {
 		grid-template-columns: 1fr;
 	}
 	.login-register__content {

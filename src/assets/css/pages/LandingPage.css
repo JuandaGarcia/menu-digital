@@ -42,6 +42,17 @@
 	align-items: center;
 	justify-content: space-between;
 	z-index: 10;
+	min-width: 15em;
+	margin: 0 1em;
+}
+
+.landing__button__main-demo {
+	color: black;
+	background: #fff;
+	border-radius: 25px;
+
+	padding: 0.6em 1.5em;
+	font-weight: 600;
 }
 
 .landing__button--img {
@@ -92,6 +103,10 @@
 	animation-name: fadeIn;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
+}
+
+.landing-container__button-hero {
+	display: flex;
 }
 
 @media screen and (max-width: 768px) {

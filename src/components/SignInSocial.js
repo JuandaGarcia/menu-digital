@@ -5,19 +5,19 @@ import 'firebase/auth'
 import Notiflix from 'notiflix'
 
 const SignInSocial = ({ setErrors }) => {
-	// const googleProvider = new firebase.auth.GoogleAuthProvider()
+	const googleProvider = new firebase.auth.GoogleAuthProvider()
 	const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
-	// const googleAuth = () => {
-	// 	firebase
-	// 		.auth()
-	// 		.signInWithPopup(googleProvider)
-	// 		.catch((err) => {
-	// 			Notiflix.Notify.Failure(
-	// 				'Algo salió mal al intentar ingresar con Google, por favor inténtalo de nuevo.'
-	// 			)
-	// 		})
-	// }
+	const googleAuth = () => {
+		firebase
+			.auth()
+			.signInWithPopup(googleProvider)
+			.catch((err) => {
+				Notiflix.Notify.Failure(
+					'Algo salió mal al intentar ingresar con Google, por favor inténtalo de nuevo.'
+				)
+			})
+	}
 
 	const facebookAuth = () => {
 		firebase
@@ -40,7 +40,7 @@ const SignInSocial = ({ setErrors }) => {
 		<div className="sign-in-social">
 			<hr className="sign-in-social__divider" />
 			<div className="sign-in-social__container">
-				{/* <button
+				<button
 					onClick={googleAuth}
 					className="sign-in-social__button sign-in-social__button--google"
 				>
@@ -49,7 +49,7 @@ const SignInSocial = ({ setErrors }) => {
 						src="/img/icons/google.svg"
 						alt="Google"
 					/>
-				</button> */}
+				</button>
 				<button
 					onClick={facebookAuth}
 					className="sign-in-social__button sign-in-social__button--facebook"

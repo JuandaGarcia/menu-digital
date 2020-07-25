@@ -37,14 +37,30 @@ const LandingPage = () => {
 					<br />
 					de menús digitales.
 				</p>
-				<Link className="landing__button__main landing__button" to="/register">
-					<span>Registrate gratis</span>
-					<img
-						className="landing__button--img"
-						src="/img/icons/arrow-right.svg"
-						alt="→"
-					/>
-				</Link>
+				<div className="landing-container__button-hero">
+					<Link
+						className="landing__button__main landing__button__main-demo"
+						to="/menu/py5Uygez0IfRaAEOM9x4IVLxssM2"
+					>
+						<span>Demo</span>
+						<img
+							className="landing__button--img"
+							src="/img/icons/arrow-right-black.svg"
+							alt="→"
+						/>
+					</Link>
+					<Link
+						className="landing__button__main landing__button"
+						to="/register"
+					>
+						<span>Registrate gratis</span>
+						<img
+							className="landing__button--img"
+							src="/img/icons/arrow-right.svg"
+							alt="→"
+						/>
+					</Link>
+				</div>
 			</main>
 			<div>
 				<img
