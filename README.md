@@ -18,7 +18,7 @@ Delimenú es una aplicación web para que los restaurantes puedan digitalizar su
 
 ![publicar](https://servicios.juandagarcia.com/images/publicar.png)
 
-## 4. **LISTO!, Te aparecerá un link donde esta disponible tu menú y un código QR con el cual tus usuarios podrán escanear el menú**
+## 4. **LISTO!, Te aparecerá un link donde esta disponible tu menú y un código QR para que tus usuarios puedan escanear tu menú**
 
 ![disponible](https://servicios.juandagarcia.com/images/disponible.png)
 ![delimenú](https://servicios.juandagarcia.com/images/cart.png)
