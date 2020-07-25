@@ -2,7 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import '../assets/css/components/Modal.css'
 
-const Modal = ({ children, closeModal, setTemporalFoodEdit, isMiMenu }) => {
+const Modal = ({
+	children,
+	closeModal,
+	setTemporalFoodEdit,
+	isMiMenu,
+	isOrders,
+	setDeleteOrder,
+}) => {
 	return ReactDOM.createPortal(
 		<div className="modal">
 			<div
@@ -10,6 +17,9 @@ const Modal = ({ children, closeModal, setTemporalFoodEdit, isMiMenu }) => {
 					closeModal(false)
 					if (isMiMenu) {
 						setTemporalFoodEdit('')
+					}
+					if (isOrders) {
+						setDeleteOrder('')
 					}
 				}}
 				className="modal__exitBackground"
@@ -20,6 +30,9 @@ const Modal = ({ children, closeModal, setTemporalFoodEdit, isMiMenu }) => {
 						closeModal(false)
 						if (isMiMenu) {
 							setTemporalFoodEdit('')
+						}
+						if (isOrders) {
+							setDeleteOrder('')
 						}
 					}}
 					className="modal__container__exit"

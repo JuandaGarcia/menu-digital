@@ -29,3 +29,17 @@
 .total-pedido {
 	font-size: 2em;
 }
+
+.order-container__header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.order-container__header-button {
+	height: 2em;
+	width: 2em;
+	outline: none;
+	border: none;
+	background: none;
+}

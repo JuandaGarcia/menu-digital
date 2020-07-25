@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import UserPanelLayout from '../components/UserPanelLayout'
 import Notiflix from 'notiflix'
 import Loader from '../components/Loader'
+import Modal from '../components/Modal'
 import { AuthContext } from '../components/Auth'
 import { Redirect } from 'react-router-dom'
 import { database } from '../firebaseConfig'
@@ -11,12 +12,15 @@ import '../assets/css/components/MisPedidos.css'
 const MisPedidos = () => {
 	const { currentUser } = useContext(AuthContext)
 	const [orders, setOrders] = useState([])
+	const [DeleteOrder, setDeleteOrder] = useState('')
+	const [DeleteModal, setDeleteModal] = useState(false)
 	const [loaders, setLoaders] = useState({
 		ordersLoader: true,
 	})
 
 	useEffect(() => {
 		document.title = 'Delimenú - Mis pedidos'
+		Notiflix.Notify.Init({ position: 'right-bottom' })
 		getPedidos()
 	}, [])
 
@@ -51,9 +55,50 @@ const MisPedidos = () => {
 		}
 	}
 
+	const onDeleteOrder = (id) => {
+		setDeleteOrder(id)
+		setDeleteModal(true)
+	}
+
+	const confirmDeleteOrder = async () => {
+		setDeleteModal(false)
+		try {
+			await database.collection('pedidos').doc(DeleteOrder).delete()
+			Notiflix.Notify.Success('Se eliminó la comida correctamente.')
+		} catch (error) {
+			Notiflix.Notify.Failure(
+				'Algo salió mal al intentar eliminar el pedido. Por favor inténtalo de nuevo.'
+			)
+		}
+		setDeleteOrder('')
+	}
+
 	if (currentUser) {
 		return (
 			<UserPanelLayout title="Mis pedidos">
+				{DeleteModal && (
+					<Modal
+						isOrders
+						closeModal={(value) => setDeleteModal(value)}
+						setDeleteOrder={(value) => setDeleteOrder(value)}
+					>
+						<p>¿Quieres eliminar este pedido?</p>
+						<div>
+							<button
+								className="modal__container__button"
+								onClick={() => setDeleteModal(false)}
+							>
+								Cancelar
+							</button>
+							<button
+								onClick={() => confirmDeleteOrder()}
+								className="modal__container__button modal__container__button--red"
+							>
+								Eliminar
+							</button>
+						</div>
+					</Modal>
+				)}
 				<section>
 					{loaders.ordersLoader ? (
 						<Loader />
@@ -68,7 +113,15 @@ const MisPedidos = () => {
 									{orders.map((order) => {
 										return (
 											<div key={order.id} className="order-container">
-												<h2>Mesa {order.mesa}</h2>
+												<div className="order-container__header">
+													<h2>Mesa {order.mesa}</h2>
+													<button
+														onClick={() => onDeleteOrder(order.id)}
+														className="order-container__header-button"
+													>
+														<img src="/img/icons/trash.svg" alt="Eliminar" />
+													</button>
+												</div>
 												<br />
 												<hr />
 												<div className="order-container-row">
