@@ -22,7 +22,8 @@ Disponible en: https://menu-digital-bc77f.web.app/
 ## 4. **LISTO!, Te aparecerá un link donde esta disponible tu menú y un código QR para que tus usuarios puedan escanear tu menú**
 
 ![disponible](https://servicios.juandagarcia.com/images/disponible.png)
-![delimenú](https://servicios.juandagarcia.com/images/cart.png)
+![phone](https://servicios.juandagarcia.com/images/phone.jpg)
+![mac](https://servicios.juandagarcia.com/images/mac.jpg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
