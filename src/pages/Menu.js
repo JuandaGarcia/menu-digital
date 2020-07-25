@@ -153,7 +153,7 @@ const Menu = ({ match }) => {
 		return (
 			<>
 				{openModal && (
-					<Modal closeModal={(value) => setOpenModal(value)}>
+					<Modal closeModal={(value) => setOpenModal(value)} pequeño>
 						<div className="carrito-row">
 							<h4>Producto</h4>
 							<h4>Precio</h4>
@@ -175,7 +175,7 @@ const Menu = ({ match }) => {
 										className="delete-product-cart"
 										onClick={() => deleteProductToCart(food.id)}
 									>
-										Eliminar
+										x
 									</button>
 								</div>
 							)

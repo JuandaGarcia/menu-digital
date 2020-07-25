@@ -119,6 +119,11 @@
 	.modal__container {
 		padding: 2em;
 	}
+
+	.modal.pequeño {
+		font-size: 0.8em;
+	}
+
 	.modal__new-food__form {
 		width: 95%;
 	}

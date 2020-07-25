@@ -9,9 +9,10 @@ const Modal = ({
 	isMiMenu,
 	isOrders,
 	setDeleteOrder,
+	pequeño,
 }) => {
 	return ReactDOM.createPortal(
-		<div className="modal">
+		<div className={`modal ${pequeño && 'pequeño'}`}>
 			<div
 				onClick={() => {
 					closeModal(false)
