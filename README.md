@@ -4,16 +4,16 @@ Delimenú es una aplicación web para que los restaurantes puedan digitalizar su
 
 # Pasos para crear un menú en Delimenú 
 1. Regístrate en la aplicación 
-[!registro](https://servicios.juandagarcia.com/images/register.png)
+![registro](https://servicios.juandagarcia.com/images/register.png)
 2. Añade tus comidas al menú dándole click al botón añadir en la sección menú.
-[!registro](https://servicios.juandagarcia.com/images/section.png)
-[!añadir](https://servicios.juandagarcia.com/images/anadir.jpg)
-[!modal](https://servicios.juandagarcia.com/images/modal.png)
+![registro](https://servicios.juandagarcia.com/images/section.png)
+![añadir](https://servicios.juandagarcia.com/images/anadir.jpg)
+![modal](https://servicios.juandagarcia.com/images/modal.png)
 3. Dale click en publicar 
-[!publicar](https://servicios.juandagarcia.com/images/publicar.jpg)
+![publicar](https://servicios.juandagarcia.com/images/publicar.jpg)
 4. LISTO!, Te aparecerá un link donde esta disponible tu menú y un código QR con el cual tus usuarios podrán escanear el menú 
-[!disponible](https://servicios.juandagarcia.com/images/disponible.png)
-[!delimenú](https://servicios.juandagarcia.com/images/cart.png)
+![disponible](https://servicios.juandagarcia.com/images/disponible.png)
+![delimenú](https://servicios.juandagarcia.com/images/cart.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
