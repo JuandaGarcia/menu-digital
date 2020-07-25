@@ -1,6 +1,6 @@
 # Delimenú
 Delimenú es una aplicación web para que los restaurantes puedan digitalizar sus menús y de esta manera sus usuarios puedan sentirse mas seguros a la hora de visitar su restaurante ya que no tendrán que tocar menús físicos. 
-[!Delimenú](https://servicios.juandagarcia.com/images/delimenu.jpg)
+![Delimenú](https://servicios.juandagarcia.com/images/delimenu.jpg)
 
 # Pasos para crear un menú en Delimenú 
 1. Regístrate en la aplicación 
