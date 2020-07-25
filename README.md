@@ -19,7 +19,7 @@ Disponible en: https://menu-digital-bc77f.web.app/
 
 ![publicar](https://servicios.juandagarcia.com/images/publicar.jpg)
 
-## 4. **LISTO!, Te aparecerá un link donde esta disponible tu menú y un código QR para que tus usuarios puedan escanear tu menú**
+## 4. **LISTO!, Te aparecerá un link donde esta disponible tu menú y un código QR para que tus usuarios puedan escanear tu menú y empieces recibir pedidos por la plataforma**
 
 ![disponible](https://servicios.juandagarcia.com/images/disponible.png)
 ![phone](https://servicios.juandagarcia.com/images/phone.jpg)
